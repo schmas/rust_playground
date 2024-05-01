@@ -150,12 +150,14 @@ fn main_with_custom_pool() {
         .par_iter()
         .enumerate()
         .map(|(i, data_segment)| {
-            let idx = thread_indices
-                .lock()
-                .unwrap()
-                .iter()
-                .position(|x| *x == rayon::current_thread_index().unwrap())
-                .unwrap();
+            // let idx = thread_indices
+            //     .lock()
+            //     .unwrap()
+            //     .iter()
+            //     .position(|x| *x == rayon::current_thread_index().unwrap())
+            //     .unwrap();
+
+            let idx = rayon::current_thread_index().unwrap();
 
             let result = data_segment
                 .chars()
