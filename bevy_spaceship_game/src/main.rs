@@ -1,38 +1,21 @@
 use bevy::prelude::*;
-
-#[derive(Component, Debug)]
-struct Position {
-    x: f32,
-    y: f32,
-}
-
-#[derive(Component, Debug)]
-struct Velocity {
-    x: f32,
-    y: f32,
-}
+use bevy_spaceship_game::{
+    camera::CameraPlugin, debug::DebugPlugin, movement::MovementPlugin, spaceship::SpaceshipPlugin,
+};
 
 fn main() {
     App::new()
-        .add_systems(Startup, spawn_spaceship)
-        .add_systems(Update, (update_position, print_position))
+        // Bevy built-ins.
+        .insert_resource(ClearColor(Color::rgb(0.1, 0.0, 0.15)))
+        .insert_resource(AmbientLight {
+            color: Color::default(),
+            brightness: 2500.0,
+        })
         .add_plugins(DefaultPlugins)
+        // User defined plugins.
+        .add_plugins(MovementPlugin)
+        .add_plugins(DebugPlugin)
+        .add_plugins(SpaceshipPlugin)
+        .add_plugins(CameraPlugin)
         .run();
-}
-
-fn spawn_spaceship(mut commands: Commands) {
-    commands.spawn((Position { x: 0.0, y: 0.0 }, Velocity { x: 1.0, y: 1.0 }));
-}
-
-fn update_position(mut query: Query<(&Velocity, &mut Position)>) {
-    query.iter_mut().for_each(|(velocity, mut position)| {
-        position.x += velocity.x;
-        position.y += velocity.y;
-    })
-}
-
-fn print_position(query: Query<(Entity, &Position)>) {
-    for (entity, position) in query.iter() {
-        info!("Entity {:?} is at position {:?}", entity, position);
-    }
 }
