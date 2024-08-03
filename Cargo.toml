@@ -1,5 +1,9 @@
 [workspace]
-members = ["book_final_prj", "by_example_20_1_threads"]
+members = [
+    "udemy_auto_gpt_playaround",
+    "book_final_prj",
+    "by_example_20_1_threads",
+]
 resolver = "2"
 
 # Enable a small amount of optimization in debug mode
