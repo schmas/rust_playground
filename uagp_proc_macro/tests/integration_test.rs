@@ -1,5 +1,6 @@
 use uagp_proc_macro::function_to_string;
 
+#[allow(dead_code)]
 const OUTPUT: &str = "";
 
 #[function_to_string]
