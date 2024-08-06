@@ -3,6 +3,7 @@ members = [
     "udemy_auto_gpt_playaround",
     "book_final_prj",
     "by_example_20_1_threads",
+    "uagp_proc_macro",
 ]
 resolver = "2"
 

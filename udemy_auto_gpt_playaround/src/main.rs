@@ -1,3 +1,4 @@
+mod m10_proc_macros;
 mod m7_1_async;
 mod m7_async;
 mod m8_collections;
